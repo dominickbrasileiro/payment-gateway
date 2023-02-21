@@ -22,20 +22,20 @@ func TestValidCreditCard(t *testing.T) {
 
 func TestExpiredCreditCard(t *testing.T) {
 	_, err := NewCreditCard(validNumber, "John Doe", 12, 2010, "123")
-	assert.Error(t, err, "card is expired")
+	assert.Error(t, err, "credit card is expired")
 }
 
 func TestCreditCardNumber(t *testing.T) {
 	_, err := NewCreditCard(invalidNumber, "John Doe", validMonth, validYear, "123")
-	assert.Error(t, err, "invalid number")
+	assert.Error(t, err, "invalid credit card number")
 }
 
 func TestCreditCardExpirationMonth(t *testing.T) {
 	_, err := NewCreditCard(validNumber, "John Doe", invalidMonth, validYear, "123")
-	assert.Error(t, err, "invalid expiration month")
+	assert.Error(t, err, "invalid credit card expiration month")
 }
 
 func TestCreditCardExpirationYear(t *testing.T) {
 	_, err := NewCreditCard(validNumber, "John Doe", validMonth, invalidYear, "123")
-	assert.Error(t, err, "invalid expiration year")
+	assert.Error(t, err, "invalid credit card expiration year")
 }
