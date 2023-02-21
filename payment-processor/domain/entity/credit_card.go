@@ -59,11 +59,11 @@ func (cc *CreditCard) IsExpired() error {
 	now := time.Now()
 
 	if cc.ExpYear < now.Year() {
-		return errors.New("card is expired")
+		return errors.New("credit card is expired")
 	}
 
 	if cc.ExpYear == now.Year() && cc.ExpMonth < int(now.Month()) {
-		return errors.New("card is expired")
+		return errors.New("credit card is expired")
 	}
 
 	return nil
@@ -73,7 +73,7 @@ func (cc *CreditCard) ValidateNumber() error {
 	re := regexp.MustCompile(`^(?:4[0-9]{12}(?:[0-9]{3})?|[25][1-7][0-9]{14}|6(?:011|5[0-9][0-9])[0-9]{12}|3[47][0-9]{13}|3(?:0[0-5]|[68][0-9])[0-9]{11}|(?:2131|1800|35\d{3})\d{11})$`)
 
 	if !re.MatchString(cc.Number) {
-		return errors.New("invalid number")
+		return errors.New("invalid credit card number")
 	}
 
 	return nil
@@ -81,7 +81,7 @@ func (cc *CreditCard) ValidateNumber() error {
 
 func (cc *CreditCard) ValidateMonth() error {
 	if cc.ExpMonth < 1 || cc.ExpMonth > 12 {
-		return errors.New("invalid expiration month")
+		return errors.New("invalid credit card expiration month")
 	}
 
 	return nil
@@ -89,7 +89,7 @@ func (cc *CreditCard) ValidateMonth() error {
 
 func (cc *CreditCard) ValidateYear() error {
 	if cc.ExpYear <= 0 {
-		return errors.New("invalid expiration year")
+		return errors.New("invalid credit card expiration year")
 	}
 
 	return nil
